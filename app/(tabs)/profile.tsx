@@ -53,7 +53,7 @@ const ProfileScreen: React.FC = () => {
             }
         });
         return () => unsubscribe();
-    }, []);
+    }, );
 
     const handleLogout = async () => {
         try {
