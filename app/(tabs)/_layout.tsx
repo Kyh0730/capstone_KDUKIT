@@ -6,9 +6,14 @@ import React from 'react';
 import { Platform } from 'react-native';
 
 // ⚠️ 프로젝트에 HapticTab, TabBarBackground가 없다면 주석 처리하거나 삭제하세요.
+<<<<<<< HEAD
 // 이 예시에서는 오류 방지를 위해 임포트 주석 처리 및 사용 제거합니다.
 // import { HapticTab } from '@/components/HapticTab'; 
 // import TabBarBackground from '@/components/ui/TabBarBackground';
+=======
+import { HapticTab } from '@/components/HapticTab';
+import TabBarBackground from '@/components/ui/TabBarBackground';
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
 import { useColorScheme } from '@/hooks/useColorScheme'; // useColorScheme 임포트
 
 export default function TabLayout() {
@@ -19,8 +24,13 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: '#0062ffff', 
         headerShown: false,
+<<<<<<< HEAD
         // tabBarButton: HapticTab, // HapticTab 사용 제거
         // tabBarBackground: TabBarBackground, // TabBarBackground 사용 제거
+=======
+        tabBarButton: HapticTab, // HapticTab 사용
+        tabBarBackground: TabBarBackground, // TabBarBackground 사용
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
         tabBarStyle: Platform.select({
           ios: {
             position: 'absolute',
@@ -33,7 +43,11 @@ export default function TabLayout() {
         name="explore"
         options={{
           title: '홈',
+<<<<<<< HEAD
           tabBarIcon: ({ color }) => <Ionicons size={28} name="home" color={color} />,
+=======
+          tabBarIcon: ({ color }) => <Ionicons size={28} name="home" color={color} />, // ⚠️ 'send' -> 'home'으로 변경
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
         }}
       />
       
@@ -45,6 +59,10 @@ export default function TabLayout() {
         }}
       />
       
+<<<<<<< HEAD
+=======
+      {/* ⚠️ chatlist.tsx 파일을 위한 탭 추가 */}
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
       <Tabs.Screen
         name="chatlist" // 파일명: app/(tabs)/chatlist.tsx
         options={{
@@ -53,6 +71,7 @@ export default function TabLayout() {
         }}
       />
 
+<<<<<<< HEAD
       {/* ⚠️ 택시 파티 목록 화면: 탭 바에서 숨김 처리 */}
       <Tabs.Screen
         name="taxiparty" // 파일명: app/(tabs)/taxiparty.tsx
@@ -73,6 +92,8 @@ export default function TabLayout() {
         }}
       />
 
+=======
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
       <Tabs.Screen
         name="profile"
         options={{
@@ -82,4 +103,8 @@ export default function TabLayout() {
       />
     </Tabs>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87

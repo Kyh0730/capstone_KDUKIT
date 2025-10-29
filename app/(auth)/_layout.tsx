@@ -3,6 +3,7 @@ import { Stack } from 'expo-router';
 
 export default function AuthLayout() {
   return (
+<<<<<<< HEAD
     <Stack
       screenOptions={{
         headerShown: false, // ✨ 이 그룹 내의 모든 화면 헤더를 숨김
@@ -18,6 +19,12 @@ export default function AuthLayout() {
       <Stack.Screen name="index" options={{ /* headerShown: false 는 기본으로 적용 */ }} />
       <Stack.Screen name="login" options={{ /* headerShown: false 는 기본으로 적용 */ }} />
       <Stack.Screen name="SignupScreen" options={{ /* headerShown: false 는 기본으로 적용 */ }} />
+=======
+    <Stack>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="login" options={{ title: '로그인' }} />
+      <Stack.Screen name="SignupScreen" options={{ title: '회원가입' }} />
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
     </Stack>
   );
 }

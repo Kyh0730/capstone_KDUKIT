@@ -13,7 +13,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+<<<<<<< HEAD
 import { auth, db } from "../../firebaseConfig";
+=======
+import { auth, db } from "../../firebaseConfig"; // Cloud Functions 관련 임포트 제거
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
 
 // ⚠️ 학과 목록 정의
 const DEPARTMENTS = [
@@ -48,7 +52,11 @@ export default function SignupScreen() {
   const [emailId, setEmailId] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState(DEPARTMENTS[0]);
   const [verificationCode, setVerificationCode] = useState("");
+<<<<<<< HEAD
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
+=======
+  const [generatedCode, setGeneratedCode] = useState<string | null>(null); // ⚠️ 가상 코드를 저장할 로컬 상태
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
   const [password, setPassword] = useState("");
   const [confirmPw, setConfirmPw] = useState("");
   const [name, setName] = useState("");
@@ -60,7 +68,11 @@ export default function SignupScreen() {
 
   const router = useRouter();
 
+<<<<<<< HEAD
   // 타이머 로직
+=======
+  // ⚠️ 타이머 로직
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
   useEffect(() => {
     let timerId: ReturnType<typeof setTimeout> | null = null; 
     if (codeSent && resendTimer > 0) {
@@ -75,7 +87,11 @@ export default function SignupScreen() {
     };
   }, [codeSent, resendTimer]);
 
+<<<<<<< HEAD
   // 초기 입력 유효성 검사
+=======
+  // ⚠️ 초기 입력 유효성 검사
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
   const validateInitialInputs = () => {
     const nameRegex = /^[가-힣\s]{1,}$/; 
     if (!nameRegex.test(name) || name.trim().length === 0) {
@@ -93,16 +109,28 @@ export default function SignupScreen() {
     return true;
   };
 
+<<<<<<< HEAD
   // 가상 인증번호 요청 로직
+=======
+  // ⚠️ 가상 인증번호 요청 로직 (로컬 상태만 업데이트)
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
   const requestVerification = () => {
     if (!validateInitialInputs()) return;
 
     setSendingCode(true); 
+<<<<<<< HEAD
     setResendTimer(RESEND_TIME_SECONDS); 
 
     setTimeout(() => {
       const code = Math.floor(100000 + Math.random() * 900000).toString();
       setGeneratedCode(code);
+=======
+    setResendTimer(RESEND_TIME_SECONDS); // 5분 타이머 시작
+
+    setTimeout(() => {
+      const code = Math.floor(100000 + Math.random() * 900000).toString();
+      setGeneratedCode(code); // ⚠️ 로컬 상태에 가상 코드 저장
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
       
       console.log("가상 발송된 인증번호:", code);
       Alert.alert("인증번호 전송 완료", `인증번호는 [${code}] 입니다. 확인 후 입력해주세요.`);
@@ -113,7 +141,11 @@ export default function SignupScreen() {
   };
 
 
+<<<<<<< HEAD
   // 최종 회원가입 시 유효성 검사
+=======
+  // ⚠️ 최종 회원가입 시 유효성 검사 (비밀번호, 인증번호)
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
   const validateFinalInputs = () => {
     const passwordRegex = /^(?=.*[A-Za-z]).{6,}$/;
     if (password !== confirmPw) {
@@ -125,6 +157,10 @@ export default function SignupScreen() {
         return false;
     }
     
+<<<<<<< HEAD
+=======
+    // ⚠️ 로컬 상태에 저장된 인증번호와 비교
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
     if (!verificationCode || verificationCode !== generatedCode) {
       Alert.alert("오류", "인증번호가 올바르지 않습니다.");
       return false;
@@ -141,9 +177,17 @@ export default function SignupScreen() {
     
     setLoading(true);
     try {
+<<<<<<< HEAD
       const userCredential = await createUserWithEmailAndPassword(auth, fullEmail, password);
       const userId = userCredential.user.uid;
 
+=======
+      // 1. Firebase Authentication에 사용자 생성
+      const userCredential = await createUserWithEmailAndPassword(auth, fullEmail, password);
+      const userId = userCredential.user.uid;
+
+      // 2. Firestore에 사용자 추가 정보 저장
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
       await setDoc(doc(db, "users", userId), {
         name: name.trim(),
         department: selectedDepartment,
@@ -154,6 +198,11 @@ export default function SignupScreen() {
       Alert.alert("회원가입 성공", "가입이 완료되었습니다!");
       router.replace('/(tabs)/explore');
       
+<<<<<<< HEAD
+=======
+      // 상태 초기화 로직은 생략합니다.
+      
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
     } catch (e: any) {
       Alert.alert("회원가입 실패", e.message);
     }
@@ -175,7 +224,10 @@ export default function SignupScreen() {
             selectedValue={selectedDepartment}
             onValueChange={(itemValue) => setSelectedDepartment(itemValue)}
             style={styles.picker}
+<<<<<<< HEAD
             itemStyle={styles.pickerItem} // ⚠️ iOS Picker 텍스트 색상 보정을 위한 itemStyle
+=======
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
         >
             {DEPARTMENTS.map((dept) => (
                 <Picker.Item key={dept} label={dept} value={dept} />
@@ -193,7 +245,10 @@ export default function SignupScreen() {
         {/* 이름 입력 필드 */}
         <TextInput
           placeholder="이름 (한글만 입력 가능)"
+<<<<<<< HEAD
           placeholderTextColor="#A9A9A9" // ✨ placeholderTextColor 명시
+=======
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
           value={name}
           onChangeText={setName}
           style={styles.input}
@@ -211,7 +266,10 @@ export default function SignupScreen() {
         <View style={styles.emailGroup}>
             <TextInput
                 placeholder="학교 이메일 ID"
+<<<<<<< HEAD
                 placeholderTextColor="#A9A9A9" // ✨ placeholderTextColor 명시
+=======
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
                 value={emailId}
                 onChangeText={setEmailId}
                 autoCapitalize="none"
@@ -225,6 +283,7 @@ export default function SignupScreen() {
         <View style={styles.verificationGroup}>
           <TextInput
             placeholder="인증번호"
+<<<<<<< HEAD
             placeholderTextColor="#A9A9A9" // ✨ placeholderTextColor 명시
             value={verificationCode}
             onChangeText={setVerificationCode}
@@ -233,6 +292,15 @@ export default function SignupScreen() {
           />
           
           {/* 버튼 렌더링 로직: 타이머/재전송/받기 */}
+=======
+            value={verificationCode}
+            onChangeText={setVerificationCode}
+            editable={codeSent} // 코드가 전송되었을 때만 입력 가능
+            style={[styles.input, styles.verificationInput]}
+          />
+          
+          {/* ⚠️ 버튼 렌더링 로직: 타이머/재전송/받기 */}
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
           {resendTimer > 0 ? (
             <TouchableOpacity
               style={[styles.verifyButton, styles.timerButton]}
@@ -260,7 +328,11 @@ export default function SignupScreen() {
           )}
         </View>
 
+<<<<<<< HEAD
         {/* 상태 메시지 및 재전송 안내 텍스트 추가 */}
+=======
+        {/* ⚠️ 상태 메시지 및 재전송 안내 텍스트 추가 */}
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
         {resendTimer > 0 ? (
             <Text style={styles.statusText}>
               인증번호가 전송되었습니다. {formatTime(resendTimer)} 남았습니다.
@@ -278,7 +350,10 @@ export default function SignupScreen() {
 
         <TextInput
           placeholder="비밀번호 (영문 포함 6자리 이상)"
+<<<<<<< HEAD
           placeholderTextColor="#A9A9A9" // ✨ placeholderTextColor 명시
+=======
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
           value={password}
           onChangeText={setPassword}
           secureTextEntry
@@ -286,7 +361,10 @@ export default function SignupScreen() {
         />
         <TextInput
           placeholder="비밀번호 확인"
+<<<<<<< HEAD
           placeholderTextColor="#A9A9A9" // ✨ placeholderTextColor 명시
+=======
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
           value={confirmPw}
           onChangeText={setConfirmPw}
           secureTextEntry
@@ -333,7 +411,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#f2f3f7",
     marginBottom: 18,
     fontSize: 16,
+<<<<<<< HEAD
     color: '#333', // ⚠️ 입력될 텍스트 색상도 명시
+=======
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
   },
   inputLabelContainer: {
     paddingHorizontal: 5,
@@ -361,7 +442,10 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     paddingHorizontal: 16,
     backgroundColor: 'transparent',
+<<<<<<< HEAD
     color: '#333', // ⚠️ 입력될 텍스트 색상도 명시
+=======
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
   },
   emailDomainText: {
     fontSize: 16,
@@ -381,9 +465,12 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
   },
+<<<<<<< HEAD
   pickerItem: {
     color: '#333', // ⚠️ Picker.Item 텍스트 색상 명시
   },
+=======
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
   // 나머지 스타일
   button: {
     marginTop: 10,
@@ -411,7 +498,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     backgroundColor: "#f2f3f7",
     fontSize: 16,
+<<<<<<< HEAD
     color: '#333', // ⚠️ 입력될 텍스트 색상 명시
+=======
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
   },
   verifyButton: {
     backgroundColor: "#4a90e2",

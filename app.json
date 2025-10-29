@@ -18,8 +18,12 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+<<<<<<< HEAD
       "edgeToEdgeEnabled": true,
       "softwareKeyboardLayoutMode": "pan"
+=======
+      "edgeToEdgeEnabled": true
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
     },
     "web": {
       "bundler": "metro",
@@ -37,12 +41,21 @@
           "backgroundColor": "#ffffff"
         }
       ],
+<<<<<<< HEAD
       "@react-native-firebase/app",
       "expo-font",
       "expo-web-browser"
+=======
+    
+      "@react-native-firebase/app"
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
     ],
     "experiments": {
       "typedRoutes": true
     }
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b706830f072d9d87133b11f83b988f80e293dd87
